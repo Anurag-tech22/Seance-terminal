@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ofrenda: remember someone you love</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ofrenda.css">
+</head>
+<body class="ofr">
+  <div class="papel" aria-hidden="true"></div>
+  <header>
+    <h1>Ofrenda</h1>
+    <p class="tag">Tell us about someone you remember. Gemma writes a remembrance and you keep it.</p>
+    <p class="private"><strong>Stays on this machine.</strong> Nothing you write here is logged, embedded or stored. The photo never leaves your browser.</p>
+    <nav class="nav"><a href="/">Back to the séance</a></nav>
+  </header>
+
+  <main class="ofr-main">
+    <form id="form" class="ofr-form">
+      <label>Name <input id="name" maxlength="80" required></label>
+      <label>Relationship <input id="rel" maxlength="80" placeholder="grandmother, friend, teacher..."></label>
+      <label>Favorite foods <input id="foods" maxlength="300" placeholder="pan de muerto, mango lassi..."></label>
+      <label>Favorite songs <input id="songs" maxlength="300"></label>
+      <label>A story or memory <textarea id="memory" rows="4" maxlength="1200"></textarea></label>
+      <label>Photo (optional, stays in your browser) <input id="photo" type="file" accept="image/*"></label>
+      <div class="row">
+        <label>Language
+          <select id="language"><option>English</option><option>Spanish</option><option>Hindi</option><option>Marathi</option></select>
+        </label>
+        <label class="chk"><input type="checkbox" id="verse"> Add a gentle calaverita rhyme</label>
+        <button id="go" type="submit">Light the candle</button>
+      </div>
+      <p id="err" class="err" role="alert" hidden></p>
+    </form>
+
+    <section id="ofrenda" class="card" hidden aria-live="polite">
+      <div class="candle" aria-hidden="true"></div>
+      <img id="card-photo" alt="Photo of the person remembered" hidden>
+      <h2 id="card-name"></h2>
+      <p id="card-rel" class="rel"></p>
+      <p id="remembrance" class="remembrance"></p>
+      <ul id="card-items" class="items"></ul>
+      <div class="row">
+        <button id="download" type="button">Download ofrenda</button>
+        <button id="clear" type="button" class="ghost-btn">Clear everything</button>
+      </div>
+    </section>
+  </main>
+  <footer>Written locally with open-weight Gemma through Ollama. Marigolds for the ones we remember.</footer>
+  <script src="ofrenda.js" type="module"></script>
+</body>
+</html>

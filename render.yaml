@@ -1,0 +1,43 @@
+# Render Blueprint: one web service (this app) + one private service running Ollama with Gemma.
+# TigerData is external: paste its connection string into DATABASE_URL when prompted.
+services:
+  - type: pserv
+    name: seance-ollama
+    runtime: docker
+    region: oregon            # Both services must share the same region for private networking
+    dockerfilePath: ./ollama/Dockerfile
+    dockerContext: ./ollama
+    plan: standard            # 2 GB RAM is the practical minimum for gemma3:1b
+    disk:
+      name: ollama-models
+      mountPath: /root/.ollama
+      sizeGB: 10
+    envVars:
+      - key: PORT
+        value: 11434
+      - key: GEN_MODEL
+        value: gemma3:1b
+      - key: EMBED_MODEL
+        value: embeddinggemma
+
+  - type: web
+    name: seance-terminal
+    runtime: node
+    region: oregon            # Must match seance-ollama region
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: GEN_MODEL
+        value: gemma3:1b
+      - key: EMBED_MODEL
+        value: embeddinggemma
+      - key: OLLAMA_URL
+        fromService:
+          type: pserv
+          name: seance-ollama
+          property: hostport
+

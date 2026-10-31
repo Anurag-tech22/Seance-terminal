@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Séance Terminal: speak with dead technologies</title>
+  <meta name="description" content="Chat with, convene a council of, and exorcise legacy code with the ghosts of COBOL, Perl, Flash, VB6, IE6, Python 2 and Fortran. Open-weight Gemma, Postgres memory on TigerData.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scan" aria-hidden="true"></div>
+  <header>
+    <div class="head-top">
+      <h1>Séance Terminal</h1>
+      <div class="terminal-ctrls">
+        <button id="audio-toggle" type="button" class="tool-btn" aria-pressed="false" title="Toggle eerie Web Audio synthesizer ambience">🕯️ Audio: Off</button>
+        <button id="crt-toggle" type="button" class="tool-btn" title="Toggle between Amber Candle and Phosphor Green CRT glow">⚡ Glow: Amber</button>
+        <div id="evp-meter" class="evp-meter" title="Spectral Resonance / EVP Monitor">
+          <span class="evp-label">EVP</span>
+          <div class="evp-bars">
+            <span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span><span class="b5"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="tag">Light a candle for the technologies that died. Ask them anything.</p>
+    <div id="badges" class="badges" aria-live="polite"></div>
+    <nav class="nav"><a href="ofrenda.html">Build an ofrenda for someone you remember</a></nav>
+  </header>
+
+  <main>
+    <section class="board" aria-label="Spirits">
+      <h2>Choose a spirit</h2>
+      <div id="spirits" class="spirits"></div>
+      <div class="council-bar">
+        <button id="council-toggle" type="button" class="ghost-btn alt">Convene a council</button>
+        <button id="council-go" type="button" hidden>Begin council</button>
+        <p id="council-hint" class="hint" hidden>Pick two or three spirits.</p>
+      </div>
+    </section>
+
+    <section id="chat" class="chat" hidden aria-label="Séance">
+      <div class="chat-head">
+        <div><h2 id="s-name"></h2><p id="s-epitaph"></p></div>
+        <div class="btns">
+          <button id="save" class="ghost-btn alt" type="button">Save transcript</button>
+          <button id="banish" class="ghost-btn" type="button">Banish</button>
+        </div>
+      </div>
+      <div id="summon" class="summon" hidden><span id="summon-text"></span></div>
+      <div id="log" class="log" aria-live="polite"></div>
+      <div id="prompts-bar" class="prompts-bar" hidden>
+        <span class="prompts-label">Ritual Summons:</span>
+        <div id="prompts-list" class="prompts-list"></div>
+      </div>
+      <form id="form" class="form">
+        <textarea id="input" rows="3" maxlength="4000" placeholder="Ask the spirit a question"></textarea>
+        <div class="row">
+          <label class="chk">Mode
+            <select id="mode">
+              <option value="chat">Ask a question</option>
+              <option value="review">Review my code</option>
+              <option value="exorcise">Exorcise code (modernize it)</option>
+            </select>
+          </label>
+          <label class="chk attach" id="attach-label">Screenshot <input type="file" id="file" accept="image/*"></label>
+          <span id="attached" class="chk" hidden></span>
+        </div>
+        <div class="row">
+          <label class="chk"><input type="checkbox" id="priv"> Private mode (nothing stored)</label>
+          <label class="chk"><input type="checkbox" id="voice"> Speak aloud</label>
+          <button id="send" type="submit">Speak</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="yard" aria-label="Graveyard stats">
+      <h2>The graveyard</h2>
+      <p class="sub">Live from TigerData: hauntings per hour, last 24 hours.</p>
+      <div id="bars" class="bars" role="img" aria-label="Séances per hour"></div>
+      <ul id="by-spirit" class="by-spirit"></ul>
+    </section>
+  </main>
+
+  <footer>Gemma runs through Ollama. Memory lives in Postgres on TigerData. Open weights, open source, no API keys.</footer>
+  <script src="app.js" type="module"></script>
+</body>
+</html>

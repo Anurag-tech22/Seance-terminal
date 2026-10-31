@@ -1,0 +1,27 @@
+{
+  "name": "seance-terminal",
+  "version": "1.0.0",
+  "description": "Chat with the ghosts of dead technologies. Gemma (open weights) + TigerData Postgres (pgvector + TimescaleDB), deployable on Render.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check db.js && node --check spirits.js && node --check public/app.js && node --check public/ofrenda.js && node --check bin/haunt.mjs && node --check test/eval.mjs && node --check scripts/db-check.mjs && node --check scripts/smoke.mjs",
+    "test": "node --test test/unit.mjs",
+    "eval": "node test/eval.mjs",
+    "db:check": "node scripts/db-check.mjs",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
+  },
+  "license": "MIT",
+  "bin": {
+    "haunt": "bin/haunt.mjs"
+  }
+}
