@@ -17,7 +17,7 @@
 
 Powered by **local open-weight Gemma 3 models via Ollama**, grounded in an authoritative historical **Grimoire** via **PostgreSQL hybrid search (pgvector + full-text RRF)**, monitored through a **TimescaleDB continuous aggregate hypertable**, and running in an isolated execution sandbox.
 
-[✨ Live Demo](#-production-deployment-on-render) • [🏛️ The Seven Spirits](#-the-seven-spirits) • [🏗️ Architecture](#%EF%B8%8F-system-architecture) • [🚀 Quickstart](#-quickstart-offline-capable) • [📊 Evaluations](#-automated-evaluations-benchmark)
+[✨ Live Demo (Render)](https://seance-terminal.onrender.com) • [🏛️ The Seven Spirits](#-the-seven-spirits) • [🏗️ Architecture](#%EF%B8%8F-system-architecture) • [🚀 Quickstart](#-quickstart-offline-capable) • [📊 Evaluations](#-automated-evaluations-benchmark)
 
 </div>
 
