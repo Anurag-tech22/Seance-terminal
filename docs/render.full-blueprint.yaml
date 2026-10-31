@@ -1,0 +1,42 @@
+# Render Blueprint: Dual-service architecture with private Ollama + 10GB persistent disk.
+# NOTE: Requires a paid Render plan + credit card for the persistent disk and private service.
+services:
+  - type: pserv
+    name: seance-ollama
+    runtime: docker
+    region: oregon
+    dockerfilePath: ./ollama/Dockerfile
+    dockerContext: ./ollama
+    plan: standard
+    disk:
+      name: ollama-models
+      mountPath: /root/.ollama
+      sizeGB: 10
+    envVars:
+      - key: PORT
+        value: 11434
+      - key: GEN_MODEL
+        value: gemma3:1b
+      - key: EMBED_MODEL
+        value: embeddinggemma
+
+  - type: web
+    name: seance-terminal
+    runtime: node
+    region: oregon
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: GEN_MODEL
+        value: gemma3:1b
+      - key: EMBED_MODEL
+        value: embeddinggemma
+      - key: OLLAMA_URL
+        fromService:
+          type: pserv
+          name: seance-ollama
+          property: hostport
